@@ -28,7 +28,7 @@ const TableData = (props) => {
   };
 
   const handleEditSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     const {data} = await axios.put(`${editTransactions}/${currId}`, {
       ...values,
