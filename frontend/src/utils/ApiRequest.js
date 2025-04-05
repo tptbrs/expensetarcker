@@ -1,4 +1,4 @@
-const host = "https://expensetaracker.vercel.app";
+const host = "https://expensetarcker-2.onrender.com";
 // const host = "http://localhost:5000";
 // const API = process.env.REACT_APP_API_URL;
 
