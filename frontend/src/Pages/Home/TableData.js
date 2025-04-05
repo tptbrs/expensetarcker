@@ -27,10 +27,16 @@ const TableData = (props) => {
     }
   };
 
-  const handleEditSubmit = async (e) => {
+ const handleEditSubmit = async (e) => {
   e.preventDefault();
 
-  console.log("Submitting values:", values); // Debugging line
+  // Check for required fields
+  const { title, amount, description, category, date, transactionType } = values;
+
+  if (!title || !amount || !description || !category || !date || !transactionType) {
+    alert("Please fill in all fields before submitting.");
+    return;
+  }
 
   try {
     const { data } = await axios.put(`${editTransactions}/${currId}`, values);
@@ -40,14 +46,14 @@ const TableData = (props) => {
       setRefresh(!refresh);
       window.location.reload();
     } else {
-      console.log("Error from API:", data.message);
-      alert("Error: " + data.message);
+      alert("Update failed on server side.");
     }
-  } catch (error) {
-    console.error("Request failed:", error);
-    alert("Server error: " + error.message);
+  } catch (err) {
+    console.error("Caught error:", err);
+    alert("Something went wrong: " + err.message);
   }
 };
+
 
 
   const handleDeleteClick = async (itemKey) => {
