@@ -28,23 +28,27 @@ const TableData = (props) => {
   };
 
   const handleEditSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const {data} = await axios.put(`${editTransactions}/${currId}`, {
-      ...values,
-    });
+  console.log("Submitting values:", values); // Debugging line
 
-    if(data.success === true){
+  try {
+    const { data } = await axios.put(`${editTransactions}/${currId}`, values);
 
-      await handleClose();
-      await setRefresh(!refresh);
+    if (data.success === true) {
+      setShow(false);
+      setRefresh(!refresh);
       window.location.reload();
+    } else {
+      console.log("Error from API:", data.message);
+      alert("Error: " + data.message);
     }
-    else{
-      console.log("error");
-    }
-
+  } catch (error) {
+    console.error("Request failed:", error);
+    alert("Server error: " + error.message);
   }
+};
+
 
   const handleDeleteClick = async (itemKey) => {
     console.log(user._id);
