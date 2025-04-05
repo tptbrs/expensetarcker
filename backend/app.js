@@ -36,6 +36,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.options("*", cors()); 
 
 // Router
 app.use("/api/v1", transactionRoutes);
