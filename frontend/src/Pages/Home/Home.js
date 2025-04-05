@@ -92,30 +92,32 @@ const Home = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const { title, amount, description, category, date, transactionType } =
-      values;
+  const { title, amount, description, category, date, transactionType } = values;
 
-    if (
-      !title ||
-      !amount ||
-      !description ||
-      !category ||
-      !date ||
-      !transactionType
-    ) {
-      toast.error("Please enter all the fields", toastOptions);
-    }
-    setLoading(true);
+  if (
+    !title ||
+    !amount ||
+    !description ||
+    !category ||
+    !date ||
+    !transactionType
+  ) {
+    toast.error("Please enter all the fields", toastOptions);
+    return; // Stop here if any field is missing
+  }
 
+  setLoading(true);
+
+  try {
     const { data } = await axios.post(addTransaction, {
-      title: title,
-      amount: amount,
-      description: description,
-      category: category,
-      date: date,
-      transactionType: transactionType,
+      title,
+      amount,
+      description,
+      category,
+      date,
+      transactionType,
       userId: cUser._id,
     });
 
@@ -126,9 +128,14 @@ const Home = () => {
     } else {
       toast.error(data.message, toastOptions);
     }
+  } catch (err) {
+    toast.error("Something went wrong. Try again.", toastOptions);
+    console.error("API Error:", err);
+  }
 
-    setLoading(false);
-  };
+  setLoading(false);
+};
+
 
   const handleReset = () => {
     setType("all");
