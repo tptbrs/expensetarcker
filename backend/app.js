@@ -17,8 +17,8 @@ const port = process.env.PORT;
 connectDB();
 
 const allowedOrigins = [
-  "http://localhost:3000", // Add frontend local URL
-  "https://your-frontend-deployment-url.com" // Add deployed frontend URL
+  // "http://localhost:3000", // Add frontend local URL
+  "https://frontend-ixup.onrender.com" // Add deployed frontend URL
   // add more origins as needed
 ];
 
