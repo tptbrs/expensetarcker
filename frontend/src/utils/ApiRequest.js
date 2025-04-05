@@ -1,5 +1,8 @@
-const host = "http://localhost:5000";
+const host = "https://expensetaracker.vercel.app";
 // const host = "http://localhost:5000";
+// const API = process.env.REACT_APP_API_URL;
+
+// axios.get(`${API}/api/your-route`);
 export const setAvatarAPI = `${host}/api/auth/setAvatar`;
 export const registerAPI = `${host}/api/auth/register`;
 export const loginAPI = `${host}/api/auth/login`;
