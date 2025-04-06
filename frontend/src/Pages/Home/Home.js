@@ -125,7 +125,7 @@ const Home = () => {
       toast.success(data.message, toastOptions);
       handleClose();
       setRefresh(!refresh);
-  );
+  ;
 
     } else {
       toast.error(data.message, toastOptions);
