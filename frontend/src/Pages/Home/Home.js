@@ -125,6 +125,15 @@ const Home = () => {
       toast.success(data.message, toastOptions);
       handleClose();
       setRefresh(!refresh);
+      setValues({
+  title: "",
+  amount: "",
+  description: "",
+  category: "",
+  date: "",
+  transactionType: "",
+});
+
     } else {
       toast.error(data.message, toastOptions);
     }
